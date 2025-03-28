@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 
 	"filestore-server/common"
-	proto "filestore-server/service/account/proto"
+	proto "filestore-server/service/account/proto/user"
 	dbcli "filestore-server/service/dbproxy/client"
 )
 

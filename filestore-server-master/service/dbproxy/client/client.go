@@ -6,10 +6,10 @@ import (
 
 	"github.com/mitchellh/mapstructure"
 
-	"github.com/micro/go-micro"
+	"go-micro.dev/v4"
 
 	"filestore-server/service/dbproxy/orm"
-	dbProto "filestore-server/service/dbproxy/proto"
+	dbProto "filestore-server/service/dbproxy/proto/dbproxy"
 )
 
 // FileMeta : 文件元信息结构

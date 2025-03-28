@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"time"
 
-	micro "github.com/micro/go-micro"
-	_ "github.com/micro/go-plugins/registry/kubernetes"
+	//_ "github.com/micro/go-plugins/registry/kubernetes"
+	micro "go-micro.dev/v4"
 
 	"filestore-server/common"
 	dbproxy "filestore-server/service/dbproxy/client"
 	cfg "filestore-server/service/download/config"
-	dlProto "filestore-server/service/download/proto"
+	dlProto "filestore-server/service/download/proto/download"
 	"filestore-server/service/download/route"
 	dlRpc "filestore-server/service/download/rpc"
 )

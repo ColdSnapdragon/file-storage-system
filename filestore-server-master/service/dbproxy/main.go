@@ -6,12 +6,12 @@ import (
 	"log"
 	"time"
 
-	"github.com/micro/cli"
-	"github.com/micro/go-micro"
-	_ "github.com/micro/go-plugins/registry/kubernetes"
+	//_ "github.com/micro/go-plugins/registry/kubernetes"
+	cli "github.com/urfave/cli/v2"
+	"go-micro.dev/v4"
 
 	dbConn "filestore-server/service/dbproxy/conn"
-	dbProxy "filestore-server/service/dbproxy/proto"
+	dbProxy "filestore-server/service/dbproxy/proto/dbproxy"
 	dbRpc "filestore-server/service/dbproxy/rpc"
 )
 
@@ -24,13 +24,14 @@ func startRpcService() {
 	)
 
 	service.Init(
-		micro.Action(func(c *cli.Context) {
+		micro.Action(func(c *cli.Context) error {
 			// 检查是否指定dbhost
 			dbhost := c.String("dbhost")
 			if len(dbhost) > 0 {
 				log.Println("custom db address: " + dbhost)
 				config.UpdateDBHost(dbhost)
 			}
+			return nil
 		}),
 	)
 

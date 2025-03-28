@@ -3,7 +3,7 @@ package rpc
 import (
 	"context"
 	cfg "filestore-server/service/download/config"
-	dlProto "filestore-server/service/download/proto"
+	dlProto "filestore-server/service/download/proto/download"
 )
 
 // Dwonload :download结构体

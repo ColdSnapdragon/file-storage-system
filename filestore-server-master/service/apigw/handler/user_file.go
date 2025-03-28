@@ -8,7 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	userProto "filestore-server/service/account/proto"
+	userProto "filestore-server/service/account/proto/user"
 )
 
 // FileQueryHandler : 查询批量的文件元信息

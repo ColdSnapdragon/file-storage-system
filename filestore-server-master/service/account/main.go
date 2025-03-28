@@ -4,14 +4,14 @@ import (
 	"log"
 	"time"
 
-	"github.com/micro/go-micro"
-	_ "github.com/micro/go-plugins/registry/kubernetes"
+	//_ "github.com/micro/go-plugins/registry/kubernetes"
+	micro "go-micro.dev/v4"
 
 	// k8s "github.com/micro/kubernetes/go/micro"
 
 	"filestore-server/common"
 	"filestore-server/service/account/handler"
-	proto "filestore-server/service/account/proto"
+	proto "filestore-server/service/account/proto/user"
 	dbproxy "filestore-server/service/dbproxy/client"
 )
 

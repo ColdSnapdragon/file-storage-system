@@ -3,7 +3,7 @@ package rpc
 import (
 	"context"
 	cfg "filestore-server/service/upload/config"
-	upProto "filestore-server/service/upload/proto"
+	upProto "filestore-server/service/upload/proto/upload"
 )
 
 // Upload : upload结构体

@@ -11,9 +11,9 @@ import (
 	dbproxy "filestore-server/service/dbproxy/client"
 	"filestore-server/service/transfer/process"
 
-	"github.com/micro/cli"
-	micro "github.com/micro/go-micro"
-	_ "github.com/micro/go-plugins/registry/kubernetes"
+	//_ "github.com/micro/go-plugins/registry/kubernetes"
+	cli "github.com/urfave/cli/v2"
+	micro "go-micro.dev/v4"
 )
 
 func startRPCService() {
@@ -24,13 +24,14 @@ func startRPCService() {
 		micro.Flags(common.CustomFlags...),
 	)
 	service.Init(
-		micro.Action(func(c *cli.Context) {
+		micro.Action(func(c *cli.Context) error {
 			// 检查是否指定mqhost
 			mqhost := c.String("mqhost")
 			if len(mqhost) > 0 {
 				log.Println("custom mq address: " + mqhost)
 				mq.UpdateRabbitHost(mqhost)
 			}
+			return nil
 		}),
 	)
 
@@ -48,10 +49,10 @@ func startTranserService() {
 		return
 	}
 	log.Println("文件转移服务启动中，开始监听转移任务队列...")
-  
-  	// 初始化mq client
+
+	// 初始化mq client
 	mq.Init()
-  
+
 	mq.StartConsume(
 		config.TransOSSQueueName,
 		"transfer_oss",

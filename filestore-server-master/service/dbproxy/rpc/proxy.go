@@ -7,7 +7,7 @@ import (
 
 	"filestore-server/service/dbproxy/mapper"
 	"filestore-server/service/dbproxy/orm"
-	dbProxy "filestore-server/service/dbproxy/proto"
+	dbProxy "filestore-server/service/dbproxy/proto/dbproxy"
 )
 
 // DBProxy : DBProxy结构体

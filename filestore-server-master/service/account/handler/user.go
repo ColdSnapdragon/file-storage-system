@@ -8,7 +8,7 @@ import (
 	"filestore-server/common"
 	"filestore-server/config"
 	cfg "filestore-server/config"
-	proto "filestore-server/service/account/proto"
+	proto "filestore-server/service/account/proto/user"
 	dbcli "filestore-server/service/dbproxy/client"
 	"filestore-server/util"
 )

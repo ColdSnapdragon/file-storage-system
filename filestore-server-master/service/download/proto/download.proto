@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package go.micro.service.download;
+option go_package = "/download";
 
 service DownloadService {
     // 获取下载入口地址

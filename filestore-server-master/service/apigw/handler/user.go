@@ -6,20 +6,20 @@ import (
 	"net/http"
 
 	// 加入k8s作为registry center
-	_ "github.com/micro/go-plugins/registry/kubernetes"
+	//_ "github.com/micro/go-plugins/registry/kubernetes"
 
 	"github.com/gin-gonic/gin"
-	ratelimit2 "github.com/juju/ratelimit"
-	micro "github.com/micro/go-micro"
+	// ratelimit2 "github.com/juju/ratelimit"
+	micro "go-micro.dev/v4"
 
-	"github.com/micro/go-plugins/wrapper/breaker/hystrix"
-	"github.com/micro/go-plugins/wrapper/ratelimiter/ratelimit"
+	// "github.com/micro/go-plugins/wrapper/breaker/hystrix"
+	// "github.com/micro/go-plugins/wrapper/ratelimiter/ratelimit"
 
 	cmn "filestore-server/common"
 	cfg "filestore-server/config"
-	userProto "filestore-server/service/account/proto"
-	dlProto "filestore-server/service/download/proto"
-	upProto "filestore-server/service/upload/proto"
+	userProto "filestore-server/service/account/proto/user"
+	dlProto "filestore-server/service/download/proto/download"
+	upProto "filestore-server/service/upload/proto/upload"
 	"filestore-server/util"
 )
 
@@ -31,11 +31,11 @@ var (
 
 func init() {
 	//配置请求容量及qps
-	bRate := ratelimit2.NewBucketWithRate(100, 1000)
+	// bRate := ratelimit2.NewBucketWithRate(100, 1000)
 	service := micro.NewService(
 		micro.Flags(cmn.CustomFlags...),
-		micro.WrapClient(ratelimit.NewClientWrapper(bRate, false)), //加入限流功能, false为不等待(超限即返回请求失败)
-		micro.WrapClient(hystrix.NewClientWrapper()),               // 加入熔断功能, 处理rpc调用失败的情况(cirucuit breaker)
+		// micro.WrapClient(ratelimit.NewClientWrapper(bRate, false)), //加入限流功能, false为不等待(超限即返回请求失败)
+		// micro.WrapClient(hystrix.NewClientWrapper()),               // 加入熔断功能, 处理rpc调用失败的情况(cirucuit breaker)
 	)
 	// 初始化， 解析命令行参数等
 	service.Init()

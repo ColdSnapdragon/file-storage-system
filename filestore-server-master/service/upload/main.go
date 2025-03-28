@@ -8,14 +8,14 @@ import (
 	"os"
 	"time"
 
-	"github.com/micro/cli"
-	micro "github.com/micro/go-micro"
-	_ "github.com/micro/go-plugins/registry/kubernetes"
+	//_ "github.com/micro/go-plugins/registry/kubernetes"
+	cli "github.com/urfave/cli/v2"
+	micro "go-micro.dev/v4"
 
 	"filestore-server/common"
 	dbproxy "filestore-server/service/dbproxy/client"
 	cfg "filestore-server/service/upload/config"
-	upProto "filestore-server/service/upload/proto"
+	upProto "filestore-server/service/upload/proto/upload"
 	"filestore-server/service/upload/route"
 	upRpc "filestore-server/service/upload/rpc"
 )
@@ -28,13 +28,14 @@ func startRPCService() {
 		micro.Flags(common.CustomFlags...),
 	)
 	service.Init(
-		micro.Action(func(c *cli.Context) {
+		micro.Action(func(c *cli.Context) error {
 			// 检查是否指定mqhost
 			mqhost := c.String("mqhost")
 			if len(mqhost) > 0 {
 				log.Println("custom mq address: " + mqhost)
 				mq.UpdateRabbitHost(mqhost)
 			}
+			return nil
 		}),
 	)
 
