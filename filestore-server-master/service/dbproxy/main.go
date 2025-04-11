@@ -13,14 +13,21 @@ import (
 	dbConn "filestore-server/service/dbproxy/conn"
 	dbProxy "filestore-server/service/dbproxy/proto/dbproxy"
 	dbRpc "filestore-server/service/dbproxy/rpc"
+
+	"github.com/go-micro/plugins/v4/registry/consul"
+	"go-micro.dev/v4/registry"
 )
 
 func startRpcService() {
+	r := consul.NewRegistry( // 用于服务注册
+		registry.Addrs("127.0.0.1:8500"), // 默认地址，可以不写
+	)
 	service := micro.NewService(
 		micro.Name("go.micro.service.dbproxy"), // 在注册中心中的服务名称
 		micro.RegisterTTL(time.Second*10),      // 声明超时时间, 避免consul不主动删掉已失去心跳的服务节点
 		micro.RegisterInterval(time.Second*5),
 		micro.Flags(common.CustomFlags...),
+		micro.Registry(r),
 	)
 
 	service.Init(

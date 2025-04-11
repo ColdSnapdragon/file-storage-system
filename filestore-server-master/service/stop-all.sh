@@ -2,9 +2,9 @@
 
 stop_process() {
     sleep 1
-    pid=`ps aux | grep -v grep | grep "service/bin" | grep $1 | awk '{print $2}'`
+    pid=`ps aux | grep -v grep | grep "service/bin" | grep $1 | awk '{print $1}'`
     if [[ $pid != '' ]]; then
-	ps aux | grep -v grep | grep "service/bin" | grep $1 | awk '{print $2}' | xargs kill
+	    kill $pid
         echo -e "\033[32m已关闭: \033[0m" "$1"
         return 1
     else
@@ -30,3 +30,4 @@ do
 done
 
 echo "执行完毕."
+read -p "按任意键继续..."

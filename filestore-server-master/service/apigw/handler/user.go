@@ -21,6 +21,9 @@ import (
 	dlProto "filestore-server/service/download/proto/download"
 	upProto "filestore-server/service/upload/proto/upload"
 	"filestore-server/util"
+
+	"github.com/go-micro/plugins/v4/registry/consul"
+	"go-micro.dev/v4/registry"
 )
 
 var (
@@ -30,10 +33,14 @@ var (
 )
 
 func init() {
+	r := consul.NewRegistry( // 用于服务注册
+		registry.Addrs("127.0.0.1:8500"), // 默认地址，可以不写
+	)
 	//配置请求容量及qps
 	// bRate := ratelimit2.NewBucketWithRate(100, 1000)
 	service := micro.NewService(
 		micro.Flags(cmn.CustomFlags...),
+		micro.Registry(r),
 		// micro.WrapClient(ratelimit.NewClientWrapper(bRate, false)), //加入限流功能, false为不等待(超限即返回请求失败)
 		// micro.WrapClient(hystrix.NewClientWrapper()),               // 加入熔断功能, 处理rpc调用失败的情况(cirucuit breaker)
 	)

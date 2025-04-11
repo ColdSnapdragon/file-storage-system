@@ -33,10 +33,10 @@ func (b *binaryFileSystem) Exists(prefix string, filepath string) bool {
 
 func BinaryFileSystem(root string) *binaryFileSystem {
 	fs := &assetfs.AssetFS{
-		Asset:     assets.Asset,
-		AssetDir:  assets.AssetDir,
-		AssetInfo: assets.AssetInfo,
-		Prefix:    root,
+		Asset:    assets.Asset,
+		AssetDir: assets.AssetDir,
+		//AssetInfo: assets.AssetInfo,
+		Prefix: root,
 	}
 	return &binaryFileSystem{
 		fs,

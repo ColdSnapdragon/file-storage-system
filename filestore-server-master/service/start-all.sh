@@ -28,12 +28,14 @@ run_service() {
 }
 
 # 创建运行日志目录
-logpath=/Users/samtake/Documents/GitHub/www/data/log/filestore-server #/data/log/filestore-server
+# logpath=/Users/samtake/Documents/GitHub/www/data/log/filestore-server #/data/log/filestore-server
+logpath="D:\Project\file-storage-system\filestore-server-master\log"
 mkdir -p $logpath
 
 # 切换到工程根目录
-cd $GOPATH/filestore-server
+#cd $GOPATH/filestore-server
 #cd /data/go/work/src/filestore-server
+cd "D:\Project\file-storage-system\filestore-server-master"
 
 # 微服务可以用supervisor做进程管理工具；
 # 或者也可以通过docker/k8s进行部署
@@ -61,4 +63,4 @@ do
 done
 
 echo '微服务启动完毕.'
-
+read -p "按任意键继续..."

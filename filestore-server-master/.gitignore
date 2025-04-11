@@ -5,3 +5,4 @@ deploy/*/*
 !deploy/service*/*
 !deploy/*.sh
 !deploy/*/Dockerfile
+log/*
